@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-* __[前言](#prelude)__
-* __[The Guide](#the-guide)__
-  * [Source Code Layout](#source-code-layout)
-  * [Syntax](#syntax)
+* __[前言](#前言)__
+* __[關於此指南](#關於此指南)__
+  * [原始碼排板](#原始碼排版)
+  * [語法](#語法)
   * [Naming](#naming)
   * [Comments](#comments)
     * [Comment Annotations](#comment-annotations)
@@ -40,7 +40,7 @@
 [Elixir] has plenty of style but like all languages it can be stifled.
 Don't stifle the style.
 
-## The Guide
+## 關於此指南
 
 這個社群的風格指南嘗試提供一個社群維護的
 [Elixir 程式語言][Elixir] 的語法風格，
@@ -56,17 +56,17 @@ Don't stifle the style.
 <!-- TODO: Add crafty quote here -->
 
 * <a name="spaces-indentation"></a>
-  請用**雙空格**來縮排，
-  不要用 Tab。
+  請用兩個**空格**來縮排，
+  不要用 Hard Tab。
   <sup>[[link](#spaces-indentation)]</sup>
 
   ```elixir
-  # 不好 - 四個空格
+  # 不建議 - 四個空格
   def some_function do
       do_something
   end
 
-  # 好 - 雙空格
+  # 建議
   def some_function do
     do_something
   end
@@ -87,10 +87,9 @@ Don't stifle the style.
   ```
 
 * <a name="spaces"></a>
-  Use spaces around operators, after commas, colons and semicolons.
-  Do not put spaces around matched pairs like brackets, parentheses, etc.
-  Whitespace might be (mostly) irrelevant to the Elixir runtime, but its proper
-  use is the key to writing easily readable code.
+  使用空格來圍繞運算元，在逗點 `,` 、冒號 `:` 及分號 `;` 之後，圍繞 `{` ，
+  和 `}` 之前。空格可能對（大部分）Elixir 直譯器來說是無關緊要的，
+  但正確的使用是寫出可讀性高的程式碼的關鍵。
   <sup>[[link](#spaces)]</sup>
 
   ```elixir
@@ -101,8 +100,7 @@ Don't stifle the style.
   ```
 
 * <a name="no-spaces"></a>
-  Do not use spaces after non-word operators that only take one argument; or
-  around the range operator.
+  不要加空白在單一參數的運算元之後，或是範圍運算元的前後。
   <sup>[[link](#no-spaces)]</sup>
 
   ```elixir
@@ -112,8 +110,7 @@ Don't stifle the style.
   ```
 
 * <a name="def-spacing"></a>
-  Use blank lines between `def`s to break up a function into logical
-  paragraphs.
+  在 `def` 之間使用空行，並且把方法分成合乎邏輯的段落。
   <sup>[[link](#def-spacing)]</sup>
 
   ```elixir
@@ -139,7 +136,7 @@ Don't stifle the style.
   ```
 
 * <a name="single-line-defs"></a>
-  ...but run single-line `def`s that match for the same function together.
+  ...但在單行 `def` 時不要空行，並把相同的函示集中在一起。
   <sup>[[link](#single-line-defs)]</sup>
 
   ```elixir
@@ -151,9 +148,8 @@ Don't stifle the style.
   ```
 
 * <a name="long-dos"></a>
-  If you use the `do:` syntax with functions and the line that makes up the
-  function body is long, put the `do:` on a new line indented one level more
-  than the previous line.
+  當你使用 `do:` 的語法宣告函式時，如果函式主體太長，請考慮把 `do:` 放在新的一
+  行，並縮排。
   <sup>[[link](#long-dos)]</sup>
 
   ```elixir
@@ -161,16 +157,16 @@ Don't stifle the style.
     do: Enum.map(args, fn(arg) -> arg <> " is on a very long line!" end)
   ```
 
-  When you use the convention above and you have more than one function clause
-  using the `do:` syntax, put the `do:` on a new line for each function clause:
+  如果你使用了以上的風格，並且你同時用多個 `do:` 函式，請把所有的 `do:` 函式
+  主體都放在新的一行：
 
   ```elixir
-  # not preferred
+  # 不建議
   def some_function([]), do: :empty
   def some_function(_),
     do: :very_long_line_here
 
-  # preferred
+  # 建議
   def some_function([]),
     do: :empty
   def some_function(_),
@@ -178,7 +174,7 @@ Don't stifle the style.
   ```
 
 * <a name="multiple-function-defs"></a>
-  If you have more than one multi-line `def`s do not use single-line `def`s.
+  如果你用了多行的 `def`，請不要再使用單行的 `def`。
   <sup>[[link](#multiple-function-defs)]</sup>
 
   ```elixir
@@ -200,70 +196,68 @@ Don't stifle the style.
   ```
 
 * <a name="pipe-operator"></a>
-  Use the pipe operator (`|>`) to chain functions together.
+  請使用管線運算元(`|>`; pipe operator)鏈接多個函式。
   <sup>[[link](#pipe-operator)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   String.strip(String.downcase(some_string))
 
-  # preferred
+  # 建議
   some_string |> String.downcase |> String.strip
 
-  # Multiline pipelines are not further indented
+  # 多行管線不用縮排
   some_string
   |> String.downcase
   |> String.strip
 
-  # Multiline pipelines on the right side of a pattern match
-  # should be indented on a new line
+  # 如果多行管線用在模式比對(pattern match)的右側，請換行並縮排
   sanitized_string =
     some_string
     |> String.downcase
     |> String.strip
   ```
 
-  While this is the preferred method, take into account that copy-pasting
-  multiline pipelines into IEx might result in a syntax error, as IEx will
-  evaluate the first line without realizing that the next line has a pipeline.
+  雖然這是建議的寫法，務必記得在剪貼多行管線進 IEx 時，有可能會出錯。這是因為
+  IEx 不知道會有之後的管線，並在會在接到第一行管線時馬上評估。
 
 * <a name="avoid-single-pipelines"></a>
-  Avoid using the pipe operator just once.
+  減少只使用一次的管線運算元。
   <sup>[[link](#avoid-single-pipelines)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   some_string |> String.downcase
 
-  # preferred
+  # 建議
   String.downcase(some_string)
   ```
 
 * <a name="bare-variables"></a>
-  Use _bare_ variables in the first part of a function chain.
+  使用_單純_的變數，在最起始的函式鍊。
   <sup>[[link](#bare-variables)]</sup>
 
   ```elixir
-  # THE WORST!
-  # This actually parses as String.strip("nope" |> String.downcase).
+  # 非常不好！
+  # 這會被編譯為 String.strip("nope" |> String.downcase)。
   String.strip "nope" |> String.downcase
 
-  # not preferred
+  # 不建議
   String.strip(some_string) |> String.downcase |> String.codepoints
 
-  # preferred
+  # 建議
   some_string |> String.strip |> String.downcase |> String.codepoints
   ```
 
 * <a name="trailing-whitespace"></a>
-  Avoid trailing whitespace.
+  避免尾隨的空白(trailing whitespace)。
   <sup>[[link](#trailing-whitespace)]</sup>
 
 * <a name="newline-eof"></a>
-  End each file with a newline.
+  用新的一行來結尾每一個檔案。
   <sup>[[link](#newline-eof)]</sup>
 
-### Syntax
+### 語法
 
 * <a name="parentheses"></a>
   Use parentheses when a `def` has arguments, and omit them when it doesn't.
