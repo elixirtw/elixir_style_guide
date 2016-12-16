@@ -36,50 +36,50 @@
 >
 > —Frank Gehry
 
-程式的風格很重要！
+程式的語法風格很重要！
 [Elixir] has plenty of style but like all languages it can be stifled.
 Don't stifle the style.
 
 ## The Guide
 
-This is our attempt at starting a community style guide for the
-[Elixir programming language][Elixir].
-Please feel free to make pull requests and contribute.
-We really want Elixir to have as vibrant of a community as any language that's
-been around five times as long.
+這個社群的風格指南嘗試提供一個社群維護的
+[Elixir 程式語言][Elixir] 的語法風格，
+歡迎提出 Pull Request 來協助完善這份指南。
 
-If you're looking for other projects to contribute to please see the
-[Hex package manager site][Hex].
+我們希望 Elixir 這個語言能夠像那些在它之前的語言一樣有個活躍的社群！
 
-### Source Code Layout
+如果你想要找其他的 Project 來提出貢獻，請上
+[Hex package manager site][Hex]。
+
+### 原始碼編
 
 <!-- TODO: Add crafty quote here -->
 
 * <a name="spaces-indentation"></a>
-  Use two **spaces** per indentation level.
-  No hard tabs.
+  請用**雙空格**來縮排，
+  不要用 Tab。
   <sup>[[link](#spaces-indentation)]</sup>
 
   ```elixir
-  # not preferred - four spaces
+  # 不好 - 四個空格
   def some_function do
       do_something
   end
 
-  # preferred
+  # 好 - 雙空格
   def some_function do
     do_something
   end
   ```
 
 * <a name="line-endings"></a>
-  Use Unix-style line endings (\*BSD/Solaris/Linux/OSX users are covered by
-  default, Windows users have to be extra careful).
+  使用 Unix 風格的行編碼結尾 (預設包含 BSD/Solaris/Linux/OSX 的使用者，
+  Windows 使用者要特別小心。)
   <sup>[[link](#line-endings)]</sup>
 
 * <a name="autocrlf"></a>
-  If you're using Git you might want to add the following configuration
-  setting to protect your project from Windows line endings creeping in:
+  如果你使用 Git ，你也許會想加入下面這個配置設定，
+  來保護你的專案被 Windows 的行編碼侵入:
   <sup>[[link](#autocrlf)]</sup>
 
   ```sh
