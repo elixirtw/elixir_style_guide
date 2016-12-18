@@ -51,7 +51,7 @@ Don't stifle the style.
 如果你想要找其他的 Project 來提出貢獻，請上
 [Hex package manager site][Hex]。
 
-### 原始碼編
+### 原始碼排版
 
 <!-- TODO: Add crafty quote here -->
 
@@ -260,71 +260,71 @@ Don't stifle the style.
 ### 語法
 
 * <a name="parentheses"></a>
-  Use parentheses when a `def` has arguments, and omit them when it doesn't.
+  使用 `def` 時，當有參數時使用括號，沒有參數時省略括號。
   <sup>[[link](#parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   def some_function arg1, arg2 do
-    # body omitted
+    # 省略主體
   end
 
   def some_function() do
-    # body omitted
+    # 省略主體
   end
 
-  # preferred
+  # 建議
   def some_function(arg1, arg2) do
-    # body omitted
+    # 省略主體
   end
 
   def some_function do
-    # body omitted
+    # 省略主體
   end
   ```
 
 * <a name="do-with-multi-line-if-unless"></a>
-  Never use `do:` for multi-line `if/unless`.
+  永遠不要在多行的 `if/unless` 使用 `do:`
   <sup>[[link](#do-with-multi-line-if-unless)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   if some_condition, do:
-    # a line of code
-    # another line of code
-    # note no end in this block
+    # 一行程式碼
+    # 再一行程式碼
+    # 注意這個區塊沒有結束
 
-  # preferred
+  # 建議
   if some_condition do
-    # some
-    # lines
-    # of code
+    # 這是
+    # 一些
+    # 程式碼
   end
   ```
 
 * <a name="do-with-single-line-if-unless"></a>
-  Use `do:` for single line `if/unless` statements.
+  在單行的 `if/unless` 敘述式使用 `do:`
   <sup>[[link](#do-with-single-line-if-unless)]</sup>
 
   ```elixir
-  # preferred
+  # 建議
   if some_condition, do: # some_stuff
   ```
 
 * <a name="unless-with-else"></a>
-  Never use `unless` with `else`.
-  Rewrite these with the positive case first.
+  永遠不要使用 `unless` 搭配 `else`。
+  將它們改寫成肯定條件。
   <sup>[[link](#unless-with-else)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   unless success? do
     IO.puts 'failure'
   else
     IO.puts 'success'
   end
 
-  # preferred
+  # 建議
   if success? do
     IO.puts 'success'
   else
@@ -333,7 +333,7 @@ Don't stifle the style.
   ```
 
 * <a name="true-as-last-condition"></a>
-  Always use `true` as the last condition of a `cond` statement.
+  永遠使用 `true` 作為 `cond` 敘述式中最後的判斷條件。
   <sup>[[link](#true-as-last-condition)]</sup>
 
   ```elixir
@@ -347,91 +347,89 @@ Don't stifle the style.
   end
   ```
 
-* <a name="function-names-with-parentheses"></a>
-  Never put a space between a function name and the opening parenthesis.
+* <a name="function-nameswith-parentheses"></a>
+  永遠不要在函式名與左括號之間放一個空格。
   <sup>[[link](#function-names-with-parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   f (3 + 2) + 1
 
-  # preferred
+  # 建議
   f(3 + 2) + 1
   ```
 
 * <a name="function-calls-and-parentheses"></a>
-  Use parentheses in function calls, especially inside a pipeline.
+  在呼叫函式時使用括號，特別是在管線中呼叫。
   <sup>[[link](#function-calls-and-parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   f 3
 
-  # preferred
+  # 建議
   f(3)
 
-  # not preferred and parses as rem(2, (3 |> g)), which is not what you want.
+  # 不建議。這會被解析成 rem(2, (3 |> g))，並不是你所預期的。
   2 |> rem 3 |> g
 
-  # preferred
+  # 建議
   2 |> rem(3) |> g
   ```
 
 * <a name="macro-calls-and-parentheses"></a>
-  Omit parentheses in macro calls when a do block is passed.
+  呼叫巨集並傳入一個 do 區塊時，省略括號。
   <sup>[[link](#macro-calls-and-parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不建議
   quote(do
     foo
   end)
 
-  # preferred
+  # 建議
   quote do
     foo
   end
   ```
 
 * <a name="parentheses-and-function-expressions"></a>
-  Optionally omit parentheses in function calls (outside a pipeline) when the
-  last argument is a function expression.
+  當呼叫函式(在管線外)，最後一個參數是函式表達式時，可以省略括號。
   <sup>[[link](#parentheses-and-function-expressions)]</sup>
 
   ```elixir
-  # preferred
+  # 建議
   Enum.reduce(1..10, 0, fn x, acc ->
     x + acc
   end)
 
-  # also preferred
+  # 同樣建議
   Enum.reduce 1..10, 0, fn x, acc ->
     x + acc
   end
   ```
 
 * <a name="parentheses-and-functions-with-zero-arity"></a>
-  Use parentheses for calls to functions with zero arity, so they can be
-  distinguished from variables.
+  呼叫沒有參數的函式時使用括號，在閱讀時就不容易與變數混淆。
   <sup>[[link](#parentheses-and-functions-with-zero-arity)]</sup>
 
   ```elixir
   defp do_stuff, do: ...
 
-  # not preferred
+  # 不建議
   def my_func do
-    do_stuff # is this a variable or a function call
+    do_stuff # 這是變數還是在呼叫函式？
   end
 
-  # preferred
+  # 建議
   def my_func do
-    do_stuff() # this is clearly a function call
+    do_stuff() # 這很清楚是在呼叫函式
   end
   ```
 
 * <a name="with-clauses"></a>
-  Indent and align successive `with` clauses.
-  Put the `do:` argument on a new line, indented normally.
+  縮排對齊連續的 `with` 子句。
+  將 `do:` 參數放在新的一行，並正常縮排。
   <sup>[[link](#with-clauses)]</sup>
 
   ```elixir
@@ -441,8 +439,7 @@ Don't stifle the style.
   ```
 
 * <a name="with-else"></a>
-  If the `with` expression has a `do` block with more than one line, or has an
-  `else` option, use multiline syntax.
+  如果 `with` 表達式多行敘述中擁有一個 `do` 區塊，或是擁有 `else` 選項時，使用多行語法。
   <sup>[[link](#with-else)]</sup>
 
   ```elixir
