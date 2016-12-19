@@ -61,12 +61,12 @@ Don't stifle the style.
   <sup>[[link](#spaces-indentation)]</sup>
 
   ```elixir
-  # 不建議 - 四個空格
+  # 不好 - 四個空格
   def some_function do
       do_something
   end
 
-  # 建議
+  # 好
   def some_function do
     do_something
   end
@@ -161,12 +161,12 @@ Don't stifle the style.
   主體都放在新的一行：
 
   ```elixir
-  # 不建議
+  # 不好
   def some_function([]), do: :empty
   def some_function(_),
     do: :very_long_line_here
 
-  # 建議
+  # 好
   def some_function([]),
     do: :empty
   def some_function(_),
@@ -200,10 +200,10 @@ Don't stifle the style.
   <sup>[[link](#pipe-operator)]</sup>
 
   ```elixir
-  # 不建議
+  # 不好
   String.strip(String.downcase(some_string))
 
-  # 建議
+  # 好
   some_string |> String.downcase |> String.strip
 
   # 多行管線不用縮排
@@ -226,10 +226,10 @@ Don't stifle the style.
   <sup>[[link](#avoid-single-pipelines)]</sup>
 
   ```elixir
-  # 不建議
+  # 不好
   some_string |> String.downcase
 
-  # 建議
+  # 好
   String.downcase(some_string)
   ```
 
@@ -242,10 +242,10 @@ Don't stifle the style.
   # 這會被編譯為 String.strip("nope" |> String.downcase)。
   String.strip "nope" |> String.downcase
 
-  # 不建議
+  # 不好
   String.strip(some_string) |> String.downcase |> String.codepoints
 
-  # 建議
+  # 好
   some_string |> String.strip |> String.downcase |> String.codepoints
   ```
 
@@ -261,70 +261,73 @@ Don't stifle the style.
 
 * <a name="parentheses"></a>
   Use parentheses when a `def` has arguments, and omit them when it doesn't.
+  如果 `def` 有參數請用括號括起，如果沒有參數請不要使用括號。
   <sup>[[link](#parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   def some_function arg1, arg2 do
-    # body omitted
+    # 省略
   end
 
   def some_function() do
-    # body omitted
+    # 省略
   end
 
-  # preferred
+  # 好
   def some_function(arg1, arg2) do
-    # body omitted
+    # 省略
   end
 
   def some_function do
-    # body omitted
+    # 省略
   end
   ```
 
 * <a name="do-with-multi-line-if-unless"></a>
   Never use `do:` for multi-line `if/unless`.
+  多行 `if/unless` 時，不要使用 `do:`
   <sup>[[link](#do-with-multi-line-if-unless)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   if some_condition, do:
-    # a line of code
-    # another line of code
-    # note no end in this block
+    # 一行程式碼
+    # 又一行程式碼
+    # note 這個程式主體沒有結束
 
-  # preferred
+  # 好
   if some_condition do
-    # some
-    # lines
-    # of code
+    # 幾
+    # 行
+    # 程式碼
   end
   ```
 
 * <a name="do-with-single-line-if-unless"></a>
   Use `do:` for single line `if/unless` statements.
+  單行 `if/unless` 請用 `do:`。
   <sup>[[link](#do-with-single-line-if-unless)]</sup>
 
   ```elixir
-  # preferred
+  # 好
   if some_condition, do: # some_stuff
   ```
 
 * <a name="unless-with-else"></a>
-  Never use `unless` with `else`.
-  Rewrite these with the positive case first.
+  如果用 `unless` **絕對** 不要用 `else`，
+  請將它們改寫成肯定條件。
   <sup>[[link](#unless-with-else)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   unless success? do
     IO.puts 'failure'
   else
     IO.puts 'success'
   end
 
-  # preferred
+  # 好
   if success? do
     IO.puts 'success'
   else
@@ -333,7 +336,7 @@ Don't stifle the style.
   ```
 
 * <a name="true-as-last-condition"></a>
-  Always use `true` as the last condition of a `cond` statement.
+  `cond` 的最後一個條件一定是 `true`。
   <sup>[[link](#true-as-last-condition)]</sup>
 
   ```elixir
@@ -348,46 +351,46 @@ Don't stifle the style.
   ```
 
 * <a name="function-names-with-parentheses"></a>
-  Never put a space between a function name and the opening parenthesis.
+  不要在函式名與左括號後之間使用空白。
   <sup>[[link](#function-names-with-parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   f (3 + 2) + 1
 
-  # preferred
+  # 好
   f(3 + 2) + 1
   ```
 
 * <a name="function-calls-and-parentheses"></a>
-  Use parentheses in function calls, especially inside a pipeline.
+  在使用函式時使用括號，特別是用在管線鍊時。
   <sup>[[link](#function-calls-and-parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   f 3
 
-  # preferred
+  # 好
   f(3)
 
-  # not preferred and parses as rem(2, (3 |> g)), which is not what you want.
+  # 不好，此方法解讀為 rem(2, (3 |> g))，這應該不是你想要的。
   2 |> rem 3 |> g
 
-  # preferred
+  # 好
   2 |> rem(3) |> g
   ```
 
 * <a name="macro-calls-and-parentheses"></a>
-  Omit parentheses in macro calls when a do block is passed.
+  在使用 `quote` 編輯巨集時，不要使用括號在 `do` 區塊之外。
   <sup>[[link](#macro-calls-and-parentheses)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   quote(do
     foo
   end)
 
-  # preferred
+  # 好
   quote do
     foo
   end
