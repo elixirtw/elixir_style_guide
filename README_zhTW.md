@@ -519,8 +519,8 @@ Don't stifle the style.
   ```
 
 * <a name="predicate-macro-names-with-guards"></a>
-  _能使用判斷式(guards)判斷_的斷言巨集(predicate macros，編譯時期產生回傳布林值的函式)，應該在名字開頭加上 `is_` 前綴。
-  判斷式列表請參閱 [Guard][Guard Expressions] 文件。
+  _能使用防衛式(guard)判斷_的斷言巨集(predicate macros，編譯時期產生回傳布林值的函式)，應該在名字開頭加上 `is_` 前綴。
+  防衛式列表請參閱 [Guard][Guard Expressions] 文件。
   <sup>[[link](#predicate-macro-names-with-guards)]</sup>
 
   ```elixir
@@ -530,7 +530,7 @@ Don't stifle the style.
   ```
 
 * <a name="predicate-macro-names-no-guards"></a>
-  _無法只使用判斷式(guards)判斷_的斷言函式(predicate functions)，應該在名字結尾加上問號(`?`)，而不是開頭加上 `is_` (或類似的)前綴。
+  _無法只用防衛式(guard)判斷_的斷言函式(predicate functions)，應該在名字結尾加上問號(`?`)，而不是在名字開頭加上 `is_` (或類似的)前綴。
   <sup>[[link](#predicate-macro-names-no-guards)]</sup>
 
   ```elixir
