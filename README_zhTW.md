@@ -7,8 +7,8 @@
   * [原始碼排板](#原始碼排版)
   * [語法](#語法)
   * [Naming](#naming)
-  * [Comments](#comments)
-    * [Comment Annotations](#comment-annotations)
+  * [註解](#註解)
+    * [註釋](#註釋)
   * [Modules](#modules)
   * [Documentation](#documentation)
   * [Typespecs](#typespecs)
@@ -554,80 +554,67 @@ Don't stifle the style.
   defp do_sum([head | tail], total), do: do_sum(tail, head + total)
   ```
 
-### Comments
+### 註解
 
 * <a name="expressive-code"></a>
-  Write expressive code and try to convey your program's intention through
-  control-flow, structure and naming.
+  撰寫表達清楚的程式碼，試著透過控制流程、結構與命名傳達程式的意圖。
   <sup>[[link](#expressive-code)]</sup>
 
 * <a name="comment-leading-spaces"></a>
-  Use one space between the leading `#` character of the comment and the text of
-  the comment.
+  在註解的 `#` 與註解文字之間使用一個空格。
   <sup>[[link](#comment-leading-spaces)]</sup>
 
 * <a name="comment-spacing"></a>
-  Comments longer than a word are capitalized and use punctuation.
-  Use [one space][Sentence Spacing] after periods.
+  比一個單字長的註解要大寫及使用標點符號。句號後使用[一個空格][Sentence Spacing]。
   <sup>[[link](#comment-spacing)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   String.upcase(some_string) # Capitalize string.
   ```
 
-#### Comment Annotations
+#### 註釋
 
 * <a name="annotations"></a>
-  Annotations should usually be written on the line immediately above the
-  relevant code.
+  註釋應該寫在相關程式碼那行上方。
   <sup>[[link](#annotations)]</sup>
 
 * <a name="annotation-keyword"></a>
-  The annotation keyword is followed by a colon and a space, then a note
-  describing the problem.
+  註釋關鍵字後方伴隨著一個冒號及空白，接著是一個描述問題的記錄。
   <sup>[[link](#annotation-keyword)]</sup>
 
 * <a name="multiple-line-annotations"></a>
-  If multiple lines are required to describe the problem, subsequent lines
-  should be indented two spaces after the `#`.
+  如果需要用到多行來描述問題，之後的敘述要在 `#` 號後面縮排兩個空格。
   <sup>[[link](#multiple-line-annotations)]</sup>
 
 * <a name="exceptions-to-annotations"></a>
-  In cases where the problem is so obvious that any documentation would be
-  redundant, annotations may be left at the end of the offending line with no
-  note.
-  This usage should be the exception and not the rule.
+  在問題顯而易見，任何說明都是多餘的狀況下，註釋會被放在該程式碼的最後並不帶任何解釋。
+  這個用法應該是特例而不是規則。
   <sup>[[link](#exceptions-to-annotations)]</sup>
 
 * <a name="todo-notes"></a>
-  Use `TODO` to note missing features or functionality that should be added at a
-  later date.
+  使用 `TODO` 來標記之後應被加入的未實現功能或特色。
   <sup>[[link](#todo-notes)]</sup>
 
 * <a name="fixme-notes"></a>
-  Use `FIXME` to note broken code that needs to be fixed.
+  使用 `FIXME` 來標記一個需要修復的程式碼。
   <sup>[[link](#fixme-notes)]</sup>
 
 * <a name="optimize-notes"></a>
-  Use `OPTIMIZE` to note slow or inefficient code that may cause performance
-  problems.
+  使用 `OPTIMIZE` 來標記可能會影響效能的緩慢或效率低落的程式碼。
   <sup>[[link](#optimize-notes)]</sup>
 
 * <a name="hack-notes"></a>
-  Use `HACK` to note code smells where questionable coding practices were used
-  and should be refactored away.
+  使用 `HACK` 來標記那些使用有問題的實作與應該被重構的程式碼。
   <sup>[[link](#hack-notes)]</sup>
 
 * <a name="review-notes"></a>
-  Use `REVIEW` to note anything that should be looked at to confirm it is
-  working as intended.
-  For example: `REVIEW: Are we sure this is how the client does X currently?`
+  使用 `REVIEW` 來標記任何需要審視及確認正常動作的地方。
+  舉例來說：`REVIEW: 我們確定用戶現在是這麼做的嗎？`
   <sup>[[link](#review-notes)]</sup>
 
 * <a name="custom-keywords"></a>
-  Use other custom annotation keywords if it feels appropriate, but be sure to
-  document them in your project's `README` or similar.
+  如果你覺得適當的話，使用其他你習慣的註釋關鍵字，但記得把它們記錄在專案的 `README` 或類似的地方。
   <sup>[[link](#custom-keywords)]</sup>
 
 ### Modules
