@@ -6,7 +6,7 @@
 * __[關於此指南](#關於此指南)__
   * [原始碼排板](#原始碼排版)
   * [語法](#語法)
-  * [Naming](#naming)
+  * [命名](#命名)
   * [Comments](#comments)
     * [Comment Annotations](#comment-annotations)
   * [Modules](#modules)
@@ -458,14 +458,14 @@ Don't stifle the style.
   end
   ```
 
-### Naming
+### 命名
 
 * <a name="snake-case"></a>
-  Use `snake_case` for atoms, functions and variables.
+  原子(Atom)、函式與變數使用蛇底式小寫（snake_case）。
   <sup>[[link](#snake-case)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   :"some atom"
   :SomeAtom
   :someAtom
@@ -480,7 +480,7 @@ Don't stifle the style.
     ...
   end
 
-  # preferred
+  # 好
   :some_atom
 
   some_var = 5
@@ -491,11 +491,11 @@ Don't stifle the style.
   ```
 
 * <a name="camel-case"></a>
-  Use `CamelCase` for modules (keep acronyms like HTTP, RFC, XML uppercase).
+  模組使用駝峰式大小寫（CamelCase）（保留像是 HTTP、RFC、XML 這種縮寫為大寫）。
   <sup>[[link](#camel-case)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   defmodule Somemodule do
     ...
   end
@@ -508,7 +508,7 @@ Don't stifle the style.
     ...
   end
 
-  # preferred
+  # 好
   defmodule SomeModule do
     ...
   end
@@ -519,9 +519,8 @@ Don't stifle the style.
   ```
 
 * <a name="predicate-macro-names-with-guards"></a>
-  The names of predicate macros (compile-time generated functions that return a
-  boolean value) _that can be used within guards_ should be prefixed with `is_`.
-  For a list of allowed expressions, see the [Guard][Guard Expressions] docs.
+  _能使用判斷式(guards)判斷_的斷言巨集(predicate macros，編譯時期產生回傳布林值的函式)，應該在名字開頭加上 `is_` 前綴。
+  判斷式列表請參閱 [Guard][Guard Expressions] 文件。
   <sup>[[link](#predicate-macro-names-with-guards)]</sup>
 
   ```elixir
@@ -531,25 +530,23 @@ Don't stifle the style.
   ```
 
 * <a name="predicate-macro-names-no-guards"></a>
-  The names of predicate functions _that cannot be used within guards_ should
-  have a trailing question mark (`?`) rather than the `is_` (or similar) prefix.
+  _無法只使用判斷式(guards)判斷_的斷言函式(predicate functions)，應該在名字結尾加上問號(`?`)，而不是開頭加上 `is_` (或類似的)前綴。
   <sup>[[link](#predicate-macro-names-no-guards)]</sup>
 
   ```elixir
   def cool?(var) do
-    # Complex check if var is cool not possible in a pure function.
+    # 判斷方法太複雜，無法只用簡單的函式判斷 var 酷不酷
   end
   ```
 
 * <a name="private-functions-with-same-name-as-public"></a>
-  Private functions with the same name as public functions should start with
-  `do_`.
+  與公開函式相同名字的私有函式，應該在名字開頭加上 `do_`。
   <sup>[[link](#private-functions-with-same-name-as-public)]</sup>
 
   ```elixir
   def sum(list), do: do_sum(list, 0)
 
-  # private functions
+  # 私有函式
   defp do_sum([], total), do: total
   defp do_sum([head | tail], total), do: do_sum(tail, head + total)
   ```
