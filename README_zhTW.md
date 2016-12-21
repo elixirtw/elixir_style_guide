@@ -397,44 +397,42 @@ Don't stifle the style.
   ```
 
 * <a name="parentheses-and-function-expressions"></a>
-  Optionally omit parentheses in function calls (outside a pipeline) when the
-  last argument is a function expression.
+  如果函式在管線之外並且最後一個參數為函式時，可以選擇性的省略括號。
   <sup>[[link](#parentheses-and-function-expressions)]</sup>
 
   ```elixir
-  # preferred
+  # 好
   Enum.reduce(1..10, 0, fn x, acc ->
     x + acc
   end)
 
-  # also preferred
+  # 也好
   Enum.reduce 1..10, 0, fn x, acc ->
     x + acc
   end
   ```
 
 * <a name="parentheses-and-functions-with-zero-arity"></a>
-  Use parentheses for calls to functions with zero arity, so they can be
-  distinguished from variables.
+  當呼叫無運算元的函式時，加上括號以便與變數區分。
   <sup>[[link](#parentheses-and-functions-with-zero-arity)]</sup>
 
   ```elixir
   defp do_stuff, do: ...
 
-  # not preferred
+  # 不好
   def my_func do
-    do_stuff # is this a variable or a function call
+    do_stuff # 這是變數還是函式呼叫？
   end
 
-  # preferred
+  # 好
   def my_func do
-    do_stuff() # this is clearly a function call
+    do_stuff() # 這很明確是一個函式
   end
   ```
 
 * <a name="with-clauses"></a>
-  Indent and align successive `with` clauses.
-  Put the `do:` argument on a new line, indented normally.
+  利用縮排來排列每個 `with` 條件。
+  把 `do:` 的參數放在新的一行，正常的縮排。
   <sup>[[link](#with-clauses)]</sup>
 
   ```elixir
@@ -444,8 +442,7 @@ Don't stifle the style.
   ```
 
 * <a name="with-else"></a>
-  If the `with` expression has a `do` block with more than one line, or has an
-  `else` option, use multiline syntax.
+  如果 `with` 表達式使用了多行的 `do` 主體或是使用了 `else`，請使用多行語法。
   <sup>[[link](#with-else)]</sup>
 
   ```elixir
