@@ -455,14 +455,14 @@ Don't stifle the style.
   end
   ```
 
-### Naming
+### 命名
 
 * <a name="snake-case"></a>
-  Use `snake_case` for atoms, functions and variables.
+  符號、方法與變數使用蛇底式小寫（snake_case）。
   <sup>[[link](#snake-case)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   :"some atom"
   :SomeAtom
   :someAtom
@@ -477,7 +477,7 @@ Don't stifle the style.
     ...
   end
 
-  # preferred
+  # 好
   :some_atom
 
   some_var = 5
@@ -488,7 +488,7 @@ Don't stifle the style.
   ```
 
 * <a name="camel-case"></a>
-  Use `CamelCase` for modules (keep acronyms like HTTP, RFC, XML uppercase).
+  模組使用駝峰式大小寫（CamelCase）。（保留像是 HTTP、RFC、XML 這種縮寫為大寫）
   <sup>[[link](#camel-case)]</sup>
 
   ```elixir
@@ -505,7 +505,7 @@ Don't stifle the style.
     ...
   end
 
-  # preferred
+  # 好
   defmodule SomeModule do
     ...
   end
@@ -516,9 +516,9 @@ Don't stifle the style.
   ```
 
 * <a name="predicate-macro-names-with-guards"></a>
-  The names of predicate macros (compile-time generated functions that return a
-  boolean value) _that can be used within guards_ should be prefixed with `is_`.
-  For a list of allowed expressions, see the [Guard][Guard Expressions] docs.
+  _可以在 guard clause 使用的述語型巨集_（編譯產生的函示，回傳布林），請用 `is_`
+  為開頭。
+  允許的語法列表，請參考 [Guard][Guard Expressions] 文件。
   <sup>[[link](#predicate-macro-names-with-guards)]</sup>
 
   ```elixir
@@ -528,8 +528,7 @@ Don't stifle the style.
   ```
 
 * <a name="predicate-macro-names-no-guards"></a>
-  The names of predicate functions _that cannot be used within guards_ should
-  have a trailing question mark (`?`) rather than the `is_` (or similar) prefix.
+  _無法在 guard clause 使用的巨集_請用問號(`?`)，不要使用 `is_` 開頭。
   <sup>[[link](#predicate-macro-names-no-guards)]</sup>
 
   ```elixir
@@ -539,14 +538,13 @@ Don't stifle the style.
   ```
 
 * <a name="private-functions-with-same-name-as-public"></a>
-  Private functions with the same name as public functions should start with
-  `do_`.
+  與公開函數同名的私有函數請使用 `do_` 開頭。
   <sup>[[link](#private-functions-with-same-name-as-public)]</sup>
 
   ```elixir
   def sum(list), do: do_sum(list, 0)
 
-  # private functions
+  # 私有函數
   defp do_sum([], total), do: total
   defp do_sum([head | tail], total), do: do_sum(tail, head + total)
   ```
