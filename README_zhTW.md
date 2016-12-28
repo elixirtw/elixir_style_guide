@@ -6,9 +6,9 @@
 * __[關於此指南](#關於此指南)__
   * [原始碼排板](#原始碼排版)
   * [語法](#語法)
-  * [Naming](#naming)
-  * [Comments](#comments)
-    * [Comment Annotations](#comment-annotations)
+  * [命名](#命名)
+  * [註解](#註解)
+    * [程式備註](#程式備註)
   * [Modules](#modules)
   * [Documentation](#documentation)
   * [Typespecs](#typespecs)
@@ -549,29 +549,29 @@ Don't stifle the style.
   defp do_sum([head | tail], total), do: do_sum(tail, head + total)
   ```
 
-### Comments
+### 註解
 
 * <a name="expressive-code"></a>
-  Write expressive code and try to convey your program's intention through
-  control-flow, structure and naming.
+  盡可能利用控制流、結構、和命名來表達你的程式的意圖。
   <sup>[[link](#expressive-code)]</sup>
 
 * <a name="comment-leading-spaces"></a>
-  Use one space between the leading `#` character of the comment and the text of
-  the comment.
+  在 `#` 後與註解間保留一空格。
   <sup>[[link](#comment-leading-spaces)]</sup>
 
 * <a name="comment-spacing"></a>
   Comments longer than a word are capitalized and use punctuation.
   Use [one space][Sentence Spacing] after periods.
+  一個字以上的註釋需要使用正確的英文大寫與標點符號規則，並在句點後
+  加上一[空格][Sentence Spacing]。
   <sup>[[link](#comment-spacing)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   String.upcase(some_string) # Capitalize string.
   ```
 
-#### Comment Annotations
+#### 程式備註
 
 * <a name="annotations"></a>
   Annotations should usually be written on the line immediately above the
