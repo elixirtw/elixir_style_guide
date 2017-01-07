@@ -8,8 +8,8 @@
   * [語法](#語法)
   * [命名](#命名)
   * [註解](#註解)
-    * [程式備註](#程式備註)
-  * [Modules](#modules)
+    * [程式註釋](#程式註釋)
+  * [模組](#模組)
   * [Documentation](#documentation)
   * [Typespecs](#typespecs)
   * [Structs](#structs)
@@ -571,73 +571,64 @@ Don't stifle the style.
   String.upcase(some_string) # Capitalize string.
   ```
 
-#### 程式備註
+#### 程式註釋
 
 * <a name="annotations"></a>
-  Annotations should usually be written on the line immediately above the
-  relevant code.
+  註釋請寫在對應程式碼的上一行。
   <sup>[[link](#annotations)]</sup>
 
 * <a name="annotation-keyword"></a>
-  The annotation keyword is followed by a colon and a space, then a note
-  describing the problem.
+  註釋關鍵字後方伴隨著一個冒號及空白，接著一個描述問題的記錄。
   <sup>[[link](#annotation-keyword)]</sup>
 
 * <a name="multiple-line-annotations"></a>
-  If multiple lines are required to describe the problem, subsequent lines
-  should be indented two spaces after the `#`.
+  如果需要用多行來描述問題，之後的行要放在 `#` 號後面並縮排兩個空白。
   <sup>[[link](#multiple-line-annotations)]</sup>
 
 * <a name="exceptions-to-annotations"></a>
-  In cases where the problem is so obvious that any documentation would be
-  redundant, annotations may be left at the end of the offending line with no
-  note.
-  This usage should be the exception and not the rule.
+  在問題是顯而易見的情況下，任何的文件會是多餘的，註釋應該要留在可能有問題的那行。
+  這個用法是例外而不是規則。
   <sup>[[link](#exceptions-to-annotations)]</sup>
 
 * <a name="todo-notes"></a>
-  Use `TODO` to note missing features or functionality that should be added at a
-  later date.
+  使用 `TODO` 來標記之後應被加入的未實現功能或特色。
   <sup>[[link](#todo-notes)]</sup>
 
 * <a name="fixme-notes"></a>
-  Use `FIXME` to note broken code that needs to be fixed.
+  使用 `FIXME` 來標記一個需要修復的程式碼。
   <sup>[[link](#fixme-notes)]</sup>
 
 * <a name="optimize-notes"></a>
-  Use `OPTIMIZE` to note slow or inefficient code that may cause performance
-  problems.
+  使用 `OPTIMIZE` 來標記可能影響效能的緩慢或效率低落的程式碼。
   <sup>[[link](#optimize-notes)]</sup>
 
 * <a name="hack-notes"></a>
-  Use `HACK` to note code smells where questionable coding practices were used
-  and should be refactored away.
+  使用 `HACK` 來標記代碼異味，其中包含了可疑的編碼實踐以及應該需要重構。
   <sup>[[link](#hack-notes)]</sup>
 
 * <a name="review-notes"></a>
-  Use `REVIEW` to note anything that should be looked at to confirm it is
-  working as intended.
-  For example: `REVIEW: Are we sure this is how the client does X currently?`
+  使用 `REVIEW` 來標記任何需要審視及確認正常動作的地方。
+  舉例來說：`REVIEW: 我們確定用戶現在是這麼做的嗎？`
   <sup>[[link](#review-notes)]</sup>
 
 * <a name="custom-keywords"></a>
-  Use other custom annotation keywords if it feels appropriate, but be sure to
-  document them in your project's `README` or similar.
+  如果你覺得適當的話，使用其他你習慣的註釋關鍵字，但記得把它們記錄在專案的 `README` 或類似的地方。
   <sup>[[link](#custom-keywords)]</sup>
 
-### Modules
+### 模組
 
 * <a name="one-module-per-file"></a>
   Use one module per file unless the module is only used internally by another
   module (such as a test).
+  每一個檔案內只有一個模組，除非另一個模組只有被並存的模組使用（如測試）。
   <sup>[[link](#one-module-per-file)]</sup>
 
 * <a name="underscored-filenames"></a>
-  Use underscored file names for `CamelCase` module names.
+  使用小寫底線檔名（snake_case）配合駝峰式（CamelCase）模組名。
   <sup>[[link](#underscored-filenames)]</sup>
 
   ```elixir
-  # file is called some_module.ex
+  # 檔名： some_module.ex
 
   defmodule SomeModule do
   end
@@ -645,25 +636,26 @@ Don't stifle the style.
 
 * <a name="module-name-nesting"></a>
   Represent each level of nesting within a module name as a directory.
+  用模組名中的階層來表示檔案位置。
   <sup>[[link](#module-name-nesting)]</sup>
 
   ```elixir
-  # file is called parser/core/xml_parser.ex
+  # 檔案名為 parser/core/xml_parser.ex
 
   defmodule Parser.Core.XMLParser do
   end
   ```
 
 * <a name="defmodule-spacing"></a>
-  Don't put a blank line after `defmodule`.
+  不要在 `defmodule` 後空行。
   <sup>[[link](#defmodule-spacing)]</sup>
 
 * <a name="module-block-spacing"></a>
-  Put a blank line after module-level code blocks.
+  在模組區塊後空行。
   <sup>[[link](#module-block-spacing)]</sup>
 
 * <a name="module-attribute-ordering"></a>
-  List module attributes and directives in the following order:
+  用下列順序來整理模組屬性：
   <sup>[[link](#module-attribute-ordering)]</sup>
 
   1. `@moduledoc`
@@ -676,9 +668,8 @@ Don't stifle the style.
   1. `@type`
   1. `@module_attribute`
 
-  Add a blank line between each grouping, and sort the terms (like module names)
-  alphabetically.
-  Here's an overall example of how you should order things in your modules:
+  在每個屬性後加入空行，並依照字母順序整理。
+  以下為完整範例：
 
   ```elixir
   defmodule MyModule do
@@ -710,8 +701,8 @@ Don't stifle the style.
   ```
 
 * <a name="module-pseudo-variable"></a>
-  Use the `__MODULE__` pseudo variable when a module refers to itself. This
-  avoids having to update any self-references when the module name changes.
+  當在模組內參考自己，請使用 `__MODULE__` 虛擬變數。如模組名修改，將不用另外
+  更新這些自參考。
   <sup>[[link](#module-pseudo-variable)]</sup>
 
   ```elixir
@@ -723,7 +714,7 @@ Don't stifle the style.
   ```
 
 * <a name="alias-self-referencing-modules"></a>
-  If you want a prettier name for a module self-reference, set up an alias.
+  如果你想要一個比較好看的自參考，請使用 `alias`。
   <sup>[[link](#alias-self-referencing-modules)]</sup>
 
   ```elixir
