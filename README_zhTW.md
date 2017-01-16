@@ -10,16 +10,17 @@
   * [註解](#註解)
     * [程式註釋](#程式註釋)
   * [模組](#模組)
-  * [Documentation](#documentation)
-  * [Typespecs](#typespecs)
-  * [Structs](#structs)
-  * [Exceptions](#exceptions)
-  * _Collections_
-  * [Strings](#strings)
-  * _Regular Expressions_
+  * [文件](#文件)
+  * [型別](#型別)
+  * [結構](#結構)
+  * [例外](#例外)
+  * _集合_
+  * [字串](#字串)
+  * _正規表示法_
   * [Metaprogramming](#metaprogramming)
-  * [Testing](#testing)
+  * [測試](#測試)
   * [Suggested Alternatives](#suggested-alternatives)
+  * [條件式](#條件式)
   * [Style Guides](#style-guides)
   * [Tools](#tools)
 * __[Getting Involved](#getting-involved)__
@@ -727,23 +728,22 @@ Don't stifle the style.
   end
   ```
 
-### Documentation
+### 文件
 
-Documentation in Elixir (when read either in `iex` with `h` or generated with
-[ExDoc]) uses the [Module Attributes] `@moduledoc` and `@doc`.
+Elixir 的文件（當在 `iex` 的 `h` 指令或是用 [ExDoc] 產生）是指 `@moduledoc`
+和 `@doc` 的[模組變數](Module Attributes)。
 
 * <a name="moduledocs"></a>
-  Always include a `@moduledoc` attribute in the line right after `defmodule` in
-  your module.
+  務必包含一 `@moduledoc` 模組變數在 `defmodule` 模組內的下一行。
   <sup>[[link](#moduledocs)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
 
   defmodule SomeModule do
 
     @moduledoc """
-    About the module
+    關於模組
     """
     ...
   end
@@ -751,23 +751,23 @@ Documentation in Elixir (when read either in `iex` with `h` or generated with
   defmodule AnotherModule do
     use SomeModule
     @moduledoc """
-    About the module
+    關於模組
     """
     ...
   end
 
-  # preferred
+  # 好
 
   defmodule SomeModule do
     @moduledoc """
-    About the module
+    關於模組
     """
     ...
   end
   ```
 
 * <a name="moduledoc-false"></a>
-  Use `@moduledoc false` if you do not intend on documenting the module.
+  使用 `@moduledoc false` 如果你不想為這個模組增加文件。
   <sup>[[link](#moduledoc-false)]</sup>
 
   ```elixir
@@ -778,23 +778,23 @@ Documentation in Elixir (when read either in `iex` with `h` or generated with
   ```
 
 * <a name="moduledoc-spacing"></a>
-  Separate code after the `@moduledoc` with a blank line.
+  在 `@moduledoc` 後使用空行與程式碼分開。
   <sup>[[link](#moduledoc-spacing)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
 
   defmodule SomeModule do
     @moduledoc """
-    About the module
+    關於模組
     """
     use AnotherModule
   end
 
-  # preferred
+  # 好
   defmodule SomeModule do
     @moduledoc """
-    About the module
+    關於模組
     """
 
     use AnotherModule
@@ -802,11 +802,11 @@ Documentation in Elixir (when read either in `iex` with `h` or generated with
   ```
 
 * <a name="heredocs"></a>
-  Use heredocs with markdown for documentation.
+  在文件內使用 heredocs 和 markdown。
   <sup>[[link](#heredocs)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
 
   defmodule SomeModule do
     @moduledoc "About the module"
@@ -814,7 +814,7 @@ Documentation in Elixir (when read either in `iex` with `h` or generated with
 
   defmodule SomeModule do
     @moduledoc """
-    About the module
+    關於模組
 
     Examples:
     iex> SomeModule.some_function
@@ -822,10 +822,10 @@ Documentation in Elixir (when read either in `iex` with `h` or generated with
     """
   end
 
-  # preferred
+  # 好
   defmodule SomeModule do
     @moduledoc """
-    About the module
+    關於模組
 
     ## Examples
 
@@ -835,17 +835,14 @@ Documentation in Elixir (when read either in `iex` with `h` or generated with
   end
   ```
 
-### Typespecs
+### 型別
 
-Typespecs are notation for declaring types and specifications, for
-documentation or for the static analysis tool Dialyzer.
+Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 Dialyzer。
 
-Custom types should be defined at the top of the module with the other
-directives (see [Modules](#modules)).
+自定義型別應該與其他指令放在模組上方（請見 [模組](#模組)）。
 
 * <a name="typedocs"></a>
-  Place `@typedoc` and `@type` definitions together, and separate each
-  pair with a blank line.
+  將 `@typedoc` 與 `@type` 宣告在一起，並每對之間用空行隔開。
   <sup>[[link](#typedocs)]</sup>
 
   ```elixir
@@ -863,20 +860,19 @@ directives (see [Modules](#modules)).
   ```
 
 * <a name="union-types"></a>
-  If a union type is too long to fit on a single line, add a newline
-  and indent with spaces to keep the return types aligned.
+  如果一個聯合型別無法在單行內容那，請在新的一行繼續並且用空格平行縮排。
   <sup>[[link](#union-types)]</sup>
 
   ```elixir
-  # not preferred - no indentation
+  # 不好 - 沒有縮排
   @type long_union_type :: some_type | another_type | some_other_type
   | a_final_type
 
-  # preferred
+  # 好
   @type long_union_type :: some_type | another_type | some_other_type
                          | a_final_type
 
-  # also preferred - one return type per line
+  # 也好 - 每個型別獨立一行
   @type long_union_type :: some_type
                          | another_type
                          | some_other_type
@@ -884,8 +880,7 @@ directives (see [Modules](#modules)).
   ```
 
 * <a name="naming-main-types"></a>
-  Name the main type for a module `t`, for example: the type specification for a
-  struct.
+  模組的主要型別命名為 `t`，範例：一個結構的型別。
   <sup>[[link](#naming-main-types)]</sup>
 
   ```elixir
@@ -898,8 +893,7 @@ directives (see [Modules](#modules)).
   ```
 
 * <a name="spec-spacing"></a>
-  Place specifications right before the function definition,
-  without separating them by a blank line.
+  把函式型別宣告放在 `def` 的上一行，不用空行。
   <sup>[[link](#spec-spacing)]</sup>
 
   ```elixir
@@ -909,23 +903,22 @@ directives (see [Modules](#modules)).
   end
   ```
 
-### Structs
+### 結構
 
 * <a name="nil-struct-field-defaults"></a>
-  If all the struct's fields default to nil, supply them as a list of atoms.
+  如果結構的所有欄位皆為空，用一 atoms 的串列表示。
   <sup>[[link](#nil-struct-field-defaults)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   defstruct name: nil, params: nil
 
-  # preferred
+  # 好
   defstruct [:name, :params]
   ```
 
 * <a name="additional-struct-def-lines"></a>
-  Indent additional lines of the struct definition, keeping the first keys
-  aligned.
+  如兩行以上的結構宣告，用空格縮排並對齊第一個 key。
   <sup>[[link](#additional-struct-def-lines)]</sup>
 
   ```elixir
@@ -933,14 +926,15 @@ directives (see [Modules](#modules)).
             qux: false, quux: nil
   ```
 
-### Exceptions
+### 例外
 
 * <a name="exception-names"></a>
   Make exception names end with a trailing `Error`.
+  自訂例外的結尾為 `Error`。
   <sup>[[link](#exception-names)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   defmodule BadHTTPCode do
     defexception [:message]
   end
@@ -949,72 +943,69 @@ directives (see [Modules](#modules)).
     defexception [:message]
   end
 
-  # preferred
+  # 好
   defmodule BadHTTPCodeError do
     defexception [:message]
   end
   ```
 
 * <a name="lowercase-error-messages"></a>
-  Use lowercase error messages when raising exceptions, with no trailing
-  punctuation.
+  錯誤訊息使用小寫，並不要在最後加上標點符號。
   <sup>[[link](#lowercase-error-messages)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   raise ArgumentError, "This is not valid."
 
-  # preferred
+  # 好
   raise ArgumentError, "this is not valid"
   ```
 
-### Collections
+### 集合
 
 _No guidelines for collections have been added yet._
 
-### Strings
+### 字串
 
 * <a name="strings-matching-with-concatenator"></a>
-  Match strings using the string concatenator rather than binary patterns:
+  使用字串連接（string concatenatora）做模式比對，不要用二進制的模式。
   <sup>[[link](#strings-matching-with-concatenator)]</sup>
 
   ```elixir
-  # not preferred
+  # 不好
   <<"my"::utf8, _rest>> = "my string"
 
-  # preferred
+  # 好
   "my" <> _rest = "my string"
   ```
 
-### Regular Expressions
+### 正規表示法
 
 _No guidelines for regular expressions have been added yet._
 
 ### Metaprogramming
 
 * <a name="avoid-metaprogramming"></a>
-  Avoid needless metaprogramming.
+  並免不必要的模板超程式（metaprogramming）。
   <sup>[[link](#avoid-metaprogramming)]</sup>
 
-### Testing
+### 測試
 
 * <a name="testing-assert-order"></a>
-  When writing [ExUnit] assertions, be consistent with the order of the expected
-  and actual values under testing.
-  Prefer placing the expected result on the right, unless the assertion is a
-  pattern match.
+  當寫 [ExUnit] 斷言（assertions）時，保持期待值與實際值得一制性。
+  盡量把期待值放在右邊，除非斷言為模式比對。
   <sup>[[link](#testing-assert-order)]</sup>
 
   ```elixir
-  # preferred - expected result on the right
+  # 好 - 期待值在右邊
   assert actual_function(1) == true
   assert actual_function(2) == false
 
-  # not preferred - inconsistent order
+  # 不好 - 順序交叉
   assert actual_function(1) == true
   assert false == actual_function(2)
 
-  # required - the assertion is a pattern match
+  # 必須 - 斷言為模式比對
   assert {:ok, expected} = actual_function(3)
   ```
 
@@ -1023,12 +1014,11 @@ _No guidelines for regular expressions have been added yet._
 Suggested alternatives are styles that haven't been seen much in the community
 yet but might provide some value.
 
-#### Cond
+#### 條件式
 
 * <a name="atom-conditions"></a>
-  An atom can be used as a catch-all expression in a `cond` as it evaluates
-  to a truthy value.
-  Suggested atoms are `:else` or `:otherwise`
+  Atom 為類真（truthy），可作為 `cond` 條件式內全捕捉（catch-all）條件。
+  建議使用 `:else` 或是 `:otherwise`。
   <sup>[[link](#atom-conditions)]</sup>
 
   ```elixir
@@ -1041,7 +1031,8 @@ yet but might provide some value.
       "OK"
   end
 
-  # is the same as
+  # 跟以下相同：
+
   cond do
     1 + 2 == 5 ->
       "Nope"
