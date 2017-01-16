@@ -88,7 +88,7 @@ Don't stifle the style.
   ```
 
 * <a name="spaces"></a>
-  使用空格來圍繞運算元，在逗點 `,` 、冒號 `:` 及分號 `;` 之後，圍繞 `{` ，
+  使用空格來圍繞運算子，在逗點 `,` 、冒號 `:` 及分號 `;` 之後，圍繞 `{` ，
   和 `}` 之前。空格可能對（大部分）Elixir 直譯器來說是無關緊要的，
   但正確的使用是寫出可讀性高的程式碼的關鍵。
   <sup>[[link](#spaces)]</sup>
@@ -101,7 +101,7 @@ Don't stifle the style.
   ```
 
 * <a name="no-spaces"></a>
-  不要加空白在單一參數的運算元之後，或是範圍運算元的前後。
+  在單元運算子之後，或是範圍運算子的前後不要加空白。
   <sup>[[link](#no-spaces)]</sup>
 
   ```elixir
@@ -197,7 +197,7 @@ Don't stifle the style.
   ```
 
 * <a name="pipe-operator"></a>
-  請使用管線運算元(`|>`; pipe operator)鏈接多個函式。
+  請使用管線運算子(`|>`; pipe operator)鏈接多個函式。
   <sup>[[link](#pipe-operator)]</sup>
 
   ```elixir
@@ -223,7 +223,7 @@ Don't stifle the style.
   IEx 不知道會有之後的管線，並在會在接到第一行管線時馬上評估。
 
 * <a name="avoid-single-pipelines"></a>
-  減少只使用一次的管線運算元。
+  減少只使用一次的管線運算子。
   <sup>[[link](#avoid-single-pipelines)]</sup>
 
   ```elixir
@@ -414,7 +414,7 @@ Don't stifle the style.
   ```
 
 * <a name="parentheses-and-functions-with-zero-arity"></a>
-  當呼叫無運算元的函式時，加上括號以便與變數區分。
+  當呼叫無參數的函式時，加上括號以便與變數區分。
   <sup>[[link](#parentheses-and-functions-with-zero-arity)]</sup>
 
   ```elixir
