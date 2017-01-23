@@ -17,11 +17,11 @@
   * _集合_
   * [字串](#字串)
   * _正規表示法_
-  * [Metaprogramming](#metaprogramming)
+  * [元編程](#metaprogramming)
   * [測試](#測試)
   * [Suggested Alternatives](#suggested-alternatives)
   * [條件式](#條件式)
-  * [Style Guides](#style-guides)
+  * [更多風格指南](#style-guides)
   * [Tools](#tools)
 * __[Getting Involved](#getting-involved)__
   * [Contributing](#contributing)
@@ -137,7 +137,7 @@ Don't stifle the style.
   ```
 
 * <a name="single-line-defs"></a>
-  ...但在單行 `def` 時不要空行，並把相同的函示集中在一起。
+  ...但在單行 `def` 時不要空行，並把相同的函式集中在一起。
   <sup>[[link](#single-line-defs)]</sup>
 
   ```elixir
@@ -219,8 +219,9 @@ Don't stifle the style.
     |> String.strip
   ```
 
-  雖然這是建議的寫法，務必記得在剪貼多行管線進 IEx 時，有可能會出錯。這是因為
-  IEx 不知道會有之後的管線，並在會在接到第一行管線時馬上評估。
+  雖然這是推薦的寫法，務必記得在 IEx 中直接貼上多行管線時，很有可能會出錯。
+  這是因為 IEx 無法預知之後的管線的存在，所以在接到第一行程式後就立刻進行評估。
+  因此在 IEx 中，多行函式鏈接的管線運算元要寫在行尾。
 
 * <a name="avoid-single-pipelines"></a>
   減少只使用一次的管線運算子。
@@ -235,7 +236,7 @@ Don't stifle the style.
   ```
 
 * <a name="bare-variables"></a>
-  使用_單純_的變數，在最起始的函式鍊。
+  把_單純_的變數放在函式鍊的最開頭。
   <sup>[[link](#bare-variables)]</sup>
 
   ```elixir
@@ -251,7 +252,7 @@ Don't stifle the style.
   ```
 
 * <a name="trailing-whitespace"></a>
-  避免尾隨的空白(trailing whitespace)。
+  避免行尾的空白(trailing whitespace)。
   <sup>[[link](#trailing-whitespace)]</sup>
 
 * <a name="newline-eof"></a>
@@ -703,7 +704,7 @@ Don't stifle the style.
 
 * <a name="module-pseudo-variable"></a>
   當在模組內參考自己，請使用 `__MODULE__` 虛擬變數。如模組名修改，將不用另外
-  更新這些自參考。
+  更新這些自我參考。
   <sup>[[link](#module-pseudo-variable)]</sup>
 
   ```elixir
@@ -715,7 +716,7 @@ Don't stifle the style.
   ```
 
 * <a name="alias-self-referencing-modules"></a>
-  如果你想要一個比較好看的自參考，請使用 `alias`。
+  如果你想要比較美觀的自我參考，請使用 `alias`。
   <sup>[[link](#alias-self-referencing-modules)]</sup>
 
   ```elixir
@@ -734,7 +735,7 @@ Elixir 的文件（當在 `iex` 的 `h` 指令或是用 [ExDoc] 產生）是指 
 和 `@doc` 的[模組變數](Module Attributes)。
 
 * <a name="moduledocs"></a>
-  務必包含一 `@moduledoc` 模組變數在 `defmodule` 模組內的下一行。
+  在 `defmodule` 模組定義的下一行務必要是`@moduledoc` 模組變數。
   <sup>[[link](#moduledocs)]</sup>
 
   ```elixir
@@ -778,7 +779,7 @@ Elixir 的文件（當在 `iex` 的 `h` 指令或是用 [ExDoc] 產生）是指 
   ```
 
 * <a name="moduledoc-spacing"></a>
-  在 `@moduledoc` 後使用空行與程式碼分開。
+  在 `@moduledoc` 後加一空行，與程式碼分開。
   <sup>[[link](#moduledoc-spacing)]</sup>
 
   ```elixir
@@ -837,7 +838,7 @@ Elixir 的文件（當在 `iex` 的 `h` 指令或是用 [ExDoc] 產生）是指 
 
 ### 型別
 
-Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 Dialyzer。
+Typespecs 為宣告型別與規格，主要用於文件或是靜態分析工具如 Dialyzer。
 
 自定義型別應該與其他指令放在模組上方（請見 [模組](#模組)）。
 
@@ -860,7 +861,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
   ```
 
 * <a name="union-types"></a>
-  如果一個聯合型別無法在單行內容那，請在新的一行繼續並且用空格平行縮排。
+  如果聯合型別 (union types) 宣告會超過一行，新的一行應用空格縮排。
   <sup>[[link](#union-types)]</sup>
 
   ```elixir
@@ -872,7 +873,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
   @type long_union_type :: some_type | another_type | some_other_type
                          | a_final_type
 
-  # 也好 - 每個型別獨立一行
+  # 也好 - 每個型別獨立成一行
   @type long_union_type :: some_type
                          | another_type
                          | some_other_type
@@ -893,7 +894,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
   ```
 
 * <a name="spec-spacing"></a>
-  把函式型別宣告放在 `def` 的上一行，不用空行。
+  把函式型別宣告放在 `def` 的上一行，不需要空行。
   <sup>[[link](#spec-spacing)]</sup>
 
   ```elixir
@@ -906,7 +907,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
 ### 結構
 
 * <a name="nil-struct-field-defaults"></a>
-  如果結構的所有欄位皆為空，用一 atoms 的串列表示。
+  如果此結構的所有欄位皆為空值，使用 atoms 的串列表示。
   <sup>[[link](#nil-struct-field-defaults)]</sup>
 
   ```elixir
@@ -918,7 +919,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
   ```
 
 * <a name="additional-struct-def-lines"></a>
-  如兩行以上的結構宣告，用空格縮排並對齊第一個 key。
+  如果結構宣告佔兩行以上，用空格縮排並對齊第一個 key。
   <sup>[[link](#additional-struct-def-lines)]</sup>
 
   ```elixir
@@ -930,7 +931,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
 
 * <a name="exception-names"></a>
   Make exception names end with a trailing `Error`.
-  自訂例外的結尾為 `Error`。
+  自訂例外的結尾應為 `Error`。
   <sup>[[link](#exception-names)]</sup>
 
   ```elixir
@@ -950,7 +951,7 @@ Typespecs 為宣告型別與規格，主要為文件或是靜態分析工具如 
   ```
 
 * <a name="lowercase-error-messages"></a>
-  錯誤訊息使用小寫，並不要在最後加上標點符號。
+  錯誤訊息使用小寫，而且不要在最後加上標點符號。
   <sup>[[link](#lowercase-error-messages)]</sup>
 
   ```elixir
@@ -983,17 +984,17 @@ _No guidelines for collections have been added yet._
 
 _No guidelines for regular expressions have been added yet._
 
-### Metaprogramming
+### 元編程
 
 * <a name="avoid-metaprogramming"></a>
-  並免不必要的模板超程式（metaprogramming）。
+  避免不必要的元編程（metaprogramming）。
   <sup>[[link](#avoid-metaprogramming)]</sup>
 
 ### 測試
 
 * <a name="testing-assert-order"></a>
-  當寫 [ExUnit] 斷言（assertions）時，保持期待值與實際值得一制性。
-  盡量把期待值放在右邊，除非斷言為模式比對。
+  當在寫 [ExUnit] 斷言（assertions）時，保持預期值與實際值得一致性。
+  盡量把預期值放在右邊，除非此斷言是在進行模式比對。
   <sup>[[link](#testing-assert-order)]</sup>
 
   ```elixir
@@ -1009,15 +1010,14 @@ _No guidelines for regular expressions have been added yet._
   assert {:ok, expected} = actual_function(3)
   ```
 
-### Suggested Alternatives
+### 推薦的其它寫法
 
-Suggested alternatives are styles that haven't been seen much in the community
-yet but might provide some value.
+推薦的其它寫法是在社群中還不常見，但有其價值的編程風格。
 
 #### 條件式
 
 * <a name="atom-conditions"></a>
-  Atom 為類真（truthy），可作為 `cond` 條件式內全捕捉（catch-all）條件。
+  Atom 為真值（truthy），可作為 `cond` 條件式內全捕捉（catch-all）條件。
   建議使用 `:else` 或是 `:otherwise`。
   <sup>[[link](#atom-conditions)]</sup>
 
@@ -1043,9 +1043,9 @@ yet but might provide some value.
   end
   ```
 
-### Style Guides
+### 更多風格指南
 
-Check [Awesome Elixir][Style Guides] for a list of alternative style guides.
+到 [Awesome Elixir][Style Guides] 上找到更多的風格指南
 
 ### Tools
 
