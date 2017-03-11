@@ -558,13 +558,11 @@ Don't stifle the style.
   <sup>[[link](#expressive-code)]</sup>
 
 * <a name="comment-leading-spaces"></a>
-  在 `#` 後與註解間保留一空格。
+  在註解的 `#` 與註解文字保留一空格。
   <sup>[[link](#comment-leading-spaces)]</sup>
 
 * <a name="comment-spacing"></a>
-  Comments longer than a word are capitalized and use punctuation.
-  Use [one space][Sentence Spacing] after periods.
-  一個字以上的註釋需要使用正確的英文大寫與標點符號規則，並在句點後
+  一個字以上的註釋需要使用正確的英文大寫與標點符號規則，並在句號後
   加上一[空格][Sentence Spacing]。
   <sup>[[link](#comment-spacing)]</sup>
 
@@ -576,7 +574,7 @@ Don't stifle the style.
 #### 程式註釋
 
 * <a name="annotations"></a>
-  註釋請寫在對應程式碼的上一行。
+  註釋請寫在相關程式碼的上一行。
   <sup>[[link](#annotations)]</sup>
 
 * <a name="annotation-keyword"></a>
@@ -584,12 +582,12 @@ Don't stifle the style.
   <sup>[[link](#annotation-keyword)]</sup>
 
 * <a name="multiple-line-annotations"></a>
-  如果需要用多行來描述問題，之後的行要放在 `#` 號後面並縮排兩個空白。
+  如果需要用多行來描述問題，之後的行要放在 `#` 號後面並縮排兩個空格。
   <sup>[[link](#multiple-line-annotations)]</sup>
 
 * <a name="exceptions-to-annotations"></a>
-  在問題是顯而易見的情況下，任何的文件會是多餘的，註釋應該要留在可能有問題的那行。
-  這個用法是例外而不是規則。
+  在問題顯而易見並任何說明都是多餘的狀況下，註釋會被放在該程式碼的最後並不帶任何解釋。
+  這個用法是特例而不是規則。
   <sup>[[link](#exceptions-to-annotations)]</sup>
 
 * <a name="todo-notes"></a>
@@ -605,7 +603,7 @@ Don't stifle the style.
   <sup>[[link](#optimize-notes)]</sup>
 
 * <a name="hack-notes"></a>
-  使用 `HACK` 來標記代碼異味，其中包含了可疑的編碼實踐以及應該需要重構。
+  使用 `HACK` 來標記代碼異味，其中包含了有問題的實作與及應該被重構的程式碼。
   <sup>[[link](#hack-notes)]</sup>
 
 * <a name="review-notes"></a>
